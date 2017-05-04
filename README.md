@@ -1,7 +1,6 @@
-# Marko HTTP Sample
+# Marko Hapi Sample
 
-This sample application illustrates how to integrate Marko with a simple
-Node.js HTTP server.
+This sample application illustrates how to integrate Marko with a Hapi server.
 
 ## Installation
 
