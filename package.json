@@ -1,0 +1,29 @@
+{
+  "name": "marko-hapi",
+  "version": "1.0.0",
+  "description": "Example of using Marko with Hapi server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marko-js-samples/marko-hapi.git"
+  },
+  "keywords": [
+    "marko",
+    "http",
+    "hapi",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marko-js-samples/marko-hapi/issues"
+  },
+  "homepage": "https://github.com/marko-js-samples/marko-hapi#readme",
+  "dependencies": {
+    "hapi": "^16.1.1",
+    "marko": "^4.2.8"
+  }
+}
