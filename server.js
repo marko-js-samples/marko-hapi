@@ -1,32 +1,48 @@
 'use strict';
-
+const Hapi = require('hapi');
+const Marko = require('marko')
+const Vision = require('vision')
 require('marko/node-require');
 
-const Hapi = require('hapi');
+const port = 3050
 
-const indexTemplate = require('./index');
+const server = Hapi.server({
+  port: port
+})
 
-const server = new Hapi.Server();
-const port = 8080;
+const start = async() => {
+  await server.register(Vision)
+  server.views({
+    relativeTo: __dirname,
+    engines: {
+      marko: {
+        compile: (src, options) => {
+          const opts = {
+            preserveWhitespace: true,
+            writeToDisk: false
+          };
+          const template = Marko.load(options.filename, opts);
+          return (context) => {
+            return template.renderToString(context);
+          };
+        }
+      }
+    },
+    path: 'views'
+  }) //end views
 
-server.connection({ port });
-
-server.route({
-  method: 'GET',
-  path: '/',
-  handler (request, reply) {
-    return reply(indexTemplate.stream({
-      name: 'Frank',
-      count: 30,
-      colors: ['red', 'green', 'blue']
-    })).type('text/html');
-  }
-});
-
-server.start((err) => {
-  if (err) {
-    throw err;
-  }
-
-  console.log(`Server running on port: ${port}`);
-});
+  server.route({
+    path: '/',
+    method: 'GET',
+    handler: (req, h) => {
+      return h.view('index', {
+        name: 'Frank',
+        count: 30,
+        colors: ['red', 'green', 'blue']
+      })
+    }
+  })
+  await server.start()
+  console.log("Hapi server running on %s", server.info.uri)
+}
+start()
