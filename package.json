@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/marko-js-samples/marko-hapi#readme",
   "dependencies": {
-    "hapi": "^16.1.1",
-    "marko": "^4.2.8"
+    "hapi": "^17.2.0",
+    "marko": "^4.7.4",
+    "vision": "^5.3.0"
   }
 }
